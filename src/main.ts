@@ -1,2 +1,6 @@
-let message: string = "hello world";
-console.log(message);
+import { People } from "./class";
+
+let Isabella = new People("isabella", 29);
+console.log(Isabella.greet());
+Isabella.name = "Zuoqin";
+console.log(Isabella.greet());
