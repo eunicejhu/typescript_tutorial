@@ -1,8 +1,8 @@
 export class People {
+  public name: string;
+  protected age: number; // protected modifier.
   private _id: number;
   private _entryDate: Date;
-  protected age: number; // protected modifier.
-  public name: string;
   constructor(name: string, age: number) {
     this.name = name;
     this.age = age;
