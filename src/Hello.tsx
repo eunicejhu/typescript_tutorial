@@ -1,4 +1,11 @@
+import Button from "antd/es/button";
 import React from "react";
 
-const Hello: React.FC = () => <div>Hello</div>;
+import "./Hello.css";
+
+const Hello: React.FC = () => (
+  <div className="App">
+    <Button>Hello</Button>
+  </div>
+);
 export { Hello };

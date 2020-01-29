@@ -9,13 +9,17 @@ const config: webpack.Configuration = {
     port: 9000
   },
   devtool: process.env.NODE_ENV === "production" ? false : "inline-source-map",
-  entry: "./src/Com.tsx",
+  entry: "./src/Home.tsx",
   module: {
     rules: [
       {
         exclude: /node_modules/,
         test: /\.tsx?$/,
         use: "ts-loader"
+      },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"]
       }
     ]
   },
