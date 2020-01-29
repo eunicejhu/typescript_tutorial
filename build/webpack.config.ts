@@ -9,7 +9,7 @@ const config: webpack.Configuration = {
     port: 9000
   },
   devtool: process.env.NODE_ENV === "production" ? false : "inline-source-map",
-  entry: "./src/main.ts",
+  entry: "./src/Com.tsx",
   module: {
     rules: [
       {
