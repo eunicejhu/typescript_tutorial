@@ -1,4 +1,5 @@
 import htmlWebpackPlugin from "html-webpack-plugin";
+import tsImportPlugin from "ts-import-plugin";
 import webpack from "webpack";
 
 const config: webpack.Configuration = {
@@ -14,12 +15,44 @@ const config: webpack.Configuration = {
     rules: [
       {
         exclude: /node_modules/,
-        test: /\.tsx?$/,
-        use: "ts-loader"
+        loader: "ts-loader",
+        options: {
+          compilerOptions: {
+            module: "es2015"
+          },
+          getCustomTransformers: () => ({
+            before: [
+              tsImportPlugin({
+                libraryDirectory: "lib",
+                libraryName: "antd",
+                style: true
+              })
+            ]
+          }),
+          transpileOnly: true
+        },
+        test: /\.tsx?$/
       },
       {
         test: /\.css$/,
         use: ["style-loader", "css-loader"]
+      },
+      {
+        test: /\.less$/,
+        use: [
+          {
+            loader: "style-loader"
+          },
+          {
+            loader: "css-loader"
+          },
+          {
+            loader: "less-loader",
+            options: {
+              javascriptEnabled: true
+            }
+          }
+        ]
       }
     ]
   },
