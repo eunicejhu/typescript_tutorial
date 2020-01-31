@@ -1,4 +1,5 @@
 import htmlWebpackPlugin from "html-webpack-plugin";
+import path from "path";
 import tsImportPlugin from "ts-import-plugin";
 import webpack from "webpack";
 
@@ -56,7 +57,7 @@ const config: webpack.Configuration = {
       }
     ]
   },
-  output: { filename: "build.js" },
+  output: { filename: "build.js", path: path.resolve(__dirname, "dist") },
   resolve: { extensions: [".tsx", ".ts", ".js"] },
 
   plugins: [
