@@ -1,6 +1,5 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import React from "react";
+import ReactDOM from "react-dom";
+import Home from "../index";
 
-import { Hello } from "../Hello";
-
-ReactDOM.render(<Hello />, document.getElementById("root"));
+ReactDOM.render(<Home />, document.getElementById("root"));
