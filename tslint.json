@@ -5,7 +5,8 @@
   "rules": {
     "trailing-comma": false,
     "no-console": false,
-    "variable-name": false
+    "variable-name": false,
+    "semicolon": false
   },
   "rulesDirectory": []
 }
