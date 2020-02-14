@@ -20,3 +20,9 @@ class Interview extends React.Component<IProps> {
     );
   }
 }
+
+// use prop destructuring
+const ComA = () => <ComB display={true} className="highlight"></ComB>;
+const ComB = ({ display, ...rest }: { [p: string]: string | boolean }) => (
+  <div {...rest}></div>
+);
