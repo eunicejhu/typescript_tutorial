@@ -42,3 +42,30 @@ const ComA = () => <ComB display={true} className="highlight"></ComB>;
 const ComB = ({ display, ...rest }: { [p: string]: string | boolean }) => (
   <div {...rest}></div>
 );
+
+// Error boundary Class
+
+interface IErrorBoundaryProps {
+  children: React.ComponentClass;
+}
+
+interface IErrorBoundaryState {
+  hasError: boolean;
+}
+// tslint:disable-next-line: max-classes-per-file
+class ErrorBoundary extends React.Component<
+  IErrorBoundaryProps,
+  IErrorBoundaryState
+> {
+  public static getDerivedErrorFromState() {
+    return { hasError: true };
+  }
+  constructor(props: IErrorBoundaryProps) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  public render() {
+    return this.state.hasError ? <div>Error</div> : this.props.children;
+  }
+}
