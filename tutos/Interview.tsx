@@ -69,3 +69,23 @@ class ErrorBoundary extends React.Component<
     return this.state.hasError ? <div>Error</div> : this.props.children;
   }
 }
+
+// Purpose of DisplayName
+function withSubscription(WrappedComponent: React.ComponentClass) {
+  // tslint:disable-next-line: max-classes-per-file
+  class WithSubscription extends React.Component {
+    public render() {
+      const newProps = { ...this.props, color: "red" };
+
+      return <WrappedComponent {...newProps} />;
+    }
+  }
+  (WithSubscription as React.ComponentClass).displayName = `WithSubscription${getDisplayName(
+    WrappedComponent
+  )}`;
+  return WithSubscription;
+}
+
+function getDisplayName(component: React.ComponentClass) {
+  return component.displayName || component.name || "component";
+}
