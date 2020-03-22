@@ -5,13 +5,23 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "es6.ts",
       "type": "node",
       "request": "launch",
-      "args": [
-        "${relativeFile}"
-      ],
-      "program": "${workspaceRoot}/node_modules/ts-node/dist/bin.js",
+      "name": "debug Jest test",
+      "program": "${workspaceRoot}/node_modules/jest/bin/jest",
+      "args": ["${workspaceRoot}/__test__/Object.test.ts"],
+      "preLaunchTask": "tsc: build - tsconfig.json",
+      "internalConsoleOptions": "openOnSessionStart",
+      "console": "integratedTerminal",
+      "outFiles": ["${workspaceRoot}/specific/dist/**/*"],
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "debug tutos ",
+      "type": "node",
+      "request": "launch",
+      "args": ["${relativeFile}"],
+      "program": "${workspaceRoot}/node_modules/ts-node/dist/bin.js"
     }
   ]
 }
