@@ -153,3 +153,27 @@ export const BubbleSort = (input: number[]): number[] => {
   }
   return sorted;
 };
+
+// 2. quickSort  O(n*log n) time complexity , O(n) space complexity
+
+export const QuickSort = (input: number[]): number[] => {
+  let originalArray: number[] = input.slice();
+  let left: number[] = [];
+  let right: number[] = [];
+  const length = originalArray.length;
+  const pivot = originalArray[length - 1];
+
+  if (length <= 1) {
+    return originalArray;
+  }
+
+  for (let i = 0; i < length - 1; i++) {
+    if (originalArray[i] < pivot) {
+      left.push(originalArray[i]);
+    } else {
+      right.push(originalArray[i]);
+    }
+  }
+
+  return [...QuickSort(left), pivot, ...QuickSort(right)];
+};

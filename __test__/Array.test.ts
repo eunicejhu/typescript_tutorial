@@ -1,4 +1,4 @@
-import { Fibonacci, swap, BubbleSort } from "../tutos/Array";
+import { Fibonacci, swap, BubbleSort, QuickSort } from "../tutos/Array";
 
 describe("Fibonacci test cases", () => {
   test("Fibonacci(0) should be 0", () => {
@@ -34,10 +34,19 @@ describe("swap", () => {
 });
 
 describe("BubbleSort", () => {
-  test.only("array should be sorted incrementally", () => {
+  test("array should be sorted incrementally", () => {
     const input = [3, 5, 1, 2, 6, 10, 54, 33];
     const expected = [1, 2, 3, 5, 6, 10, 33, 54];
     const result = BubbleSort(input);
+    expect(result).toEqual(expected);
+  });
+});
+
+describe("QuickSort", () => {
+  test.only("array should be sorted incrementally", () => {
+    const input = [3, 5, 1, 2, 6, 10, 54, 33];
+    const expected = [1, 2, 3, 5, 6, 10, 33, 54];
+    const result = QuickSort(input);
     expect(result).toEqual(expected);
   });
 });
