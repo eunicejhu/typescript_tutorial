@@ -1,4 +1,4 @@
-import { Fibonacci, swap, BubbleSort, QuickSort } from "../tutos/Array";
+import { Fibonacci, swap, BubbleSort, QuickSort, chunk2 } from "../tutos/Array";
 
 describe("Fibonacci test cases", () => {
   test("Fibonacci(0) should be 0", () => {
@@ -25,12 +25,6 @@ describe("swap", () => {
     const result = swap(input, 0, 1);
     expect(result).toEqual(expected);
   });
-  test(" swap([1,2], 1, 2) should throw error ", () => {
-    const input = [1, 2];
-    const expected = new Error("index is out of range");
-    const result = swap(input, 1, 2);
-    expect(result).toThrowError(expected);
-  });
 });
 
 describe("BubbleSort", () => {
@@ -43,10 +37,50 @@ describe("BubbleSort", () => {
 });
 
 describe("QuickSort", () => {
-  test.only("array should be sorted incrementally", () => {
+  test("array should be sorted incrementally", () => {
     const input = [3, 5, 1, 2, 6, 10, 54, 33];
     const expected = [1, 2, 3, 5, 6, 10, 33, 54];
     const result = QuickSort(input);
     expect(result).toEqual(expected);
+  });
+});
+
+describe("ChunkArray", () => {
+  test("chunk([1, 2, 3, 4], 2)  //→ [[1, 2], [3, 4]]", () => {
+    const array = [1, 2, 3, 4];
+    const size = 2;
+    const expected = [
+      [1, 2],
+      [3, 4]
+    ];
+    expect(chunk2(array, size)).toEqual(expected);
+  });
+  test("chunk([1, 2, 3, 4, 5], 2)  //→ [[1, 2], [3, 4], [5]]", () => {
+    const array = [1, 2, 3, 4, 5];
+    const size = 2;
+    const expected = [[1, 2], [3, 4], [5]];
+    expect(chunk2(array, size)).toEqual(expected);
+  });
+  test("chunk([1, 2, 3, 4, 5, 6, 7, 8], 3)  //→ [[1, 2, 3],  [4, 5,6], [7, 8]]", () => {
+    const array = [1, 2, 3, 4, 5, 6, 7, 8];
+    const size = 3;
+    const expected = [
+      [1, 2, 3],
+      [4, 5, 6],
+      [7, 8]
+    ];
+    expect(chunk2(array, size)).toEqual(expected);
+  });
+  test("chunk([1, 2, 3, 4, 5], 4)  //→ [[1, 2, 3, 4], [5]]", () => {
+    const array = [1, 2, 3, 4, 5];
+    const size = 4;
+    const expected = [[1, 2, 3, 4], [5]];
+    expect(chunk2(array, size)).toEqual(expected);
+  });
+  test("chunk([1, 2, 3, 4, 5], 10)  //→ [[1, 2, 3, 4, 5]]", () => {
+    const array = [1, 2, 3, 4, 5];
+    const size = 10;
+    const expected = [[1, 2, 3, 4, 5]];
+    expect(chunk2(array, size)).toEqual(expected);
   });
 });

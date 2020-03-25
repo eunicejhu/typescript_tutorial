@@ -134,7 +134,7 @@ if (str) {
 
 export const swap = (input: number[], i: number, j: number): number[] => {
   if (j >= input.length || i >= input.length) {
-    throw new Error("index is out of range");
+    return input;
   }
   const temp = input[i];
   input[i] = input[j];
@@ -176,4 +176,46 @@ export const QuickSort = (input: number[]): number[] => {
   }
 
   return [...QuickSort(left), pivot, ...QuickSort(right)];
+};
+
+// Array Chunking
+// solution1:
+export const chunk1 = (array: number[], size: number): number[][] => {
+  const originalArray = array.slice();
+  let chunkedArray: number[][] = [];
+  const length = originalArray.length;
+  let chunk = [];
+  for (let i = 0; i < length; i++) {
+    if (i % size === 0 && chunk.length) {
+      chunkedArray.push(chunk);
+      chunk = [];
+    }
+    chunk.push(originalArray[i]);
+    if (i === length - 1 && chunk.length) {
+      chunkedArray.push(chunk);
+    }
+  }
+  return chunkedArray;
+};
+
+// solution2
+export const chunk2 = (array: number[], size: number): number[][] => {
+  // declaring variable 'chunked' as an empty array
+  let chunked = [];
+
+  // for loop iterating through every element of our input array
+  for (let ele of array) {
+    // declaring variable 'last' as the last index of our 'chunked' array
+    const last = chunked[chunked.length - 1];
+
+    // checking if last is undefined or if the last subarray is equal to the size
+    if (!last || last.length === size) {
+      // then we push the element to be a new subarray in 'chunked'
+      chunked.push([ele]);
+    } else {
+      // if not, then we add the element to the 'last' subarray
+      last.push(ele);
+    }
+  }
+  return chunked;
 };
