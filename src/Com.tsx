@@ -1,6 +1,12 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import Form from "./Form";
 
 import { Hello } from "./Hello";
 
-ReactDOM.render(<Hello />, document.getElementById("root"));
+ReactDOM.render(
+  <Hello>
+    <Form />
+  </Hello>,
+  document.getElementById("root")
+);
