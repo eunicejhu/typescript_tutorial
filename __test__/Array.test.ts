@@ -1,4 +1,12 @@
-import { Fibonacci, swap, BubbleSort, QuickSort, chunk2 } from "../tutos/Array";
+import {
+  Fibonacci,
+  swap,
+  BubbleSort,
+  QuickSort,
+  chunk2,
+  sort,
+  MergeSort
+} from "../tutos/Array";
 
 describe("Fibonacci test cases", () => {
   test("Fibonacci(0) should be 0", () => {
@@ -82,5 +90,38 @@ describe("ChunkArray", () => {
     const size = 10;
     const expected = [[1, 2, 3, 4, 5]];
     expect(chunk2(array, size)).toEqual(expected);
+  });
+});
+
+describe("sort", () => {
+  test("[1, 3, 5] [2, 4, 6] => [1, 2, 3, 4, 5, 6]", () => {
+    const left = [1, 3, 5];
+    const right = [2, 4, 6];
+    const expected = [1, 2, 3, 4, 5, 6];
+    expect(sort(left, right)).toEqual(expected);
+  });
+  test(" [2, 4, 6] [1, 3, 5] => [1, 2, 3, 4, 5, 6]", () => {
+    const right = [1, 3, 5];
+    const left = [2, 4, 6];
+    const expected = [1, 2, 3, 4, 5, 6];
+    expect(sort(left, right)).toEqual(expected);
+  });
+});
+
+describe("MergeSort", () => {
+  test.only("[1, 5, 3, 8, 2, 35, 53] => [1, 2, 3, 5, 8, 35, 53]", () => {
+    const array = [1, 5, 3, 8, 2, 35, 53];
+    const expected = [1, 2, 3, 5, 8, 35, 53];
+    expect(MergeSort(array)).toEqual(expected);
+  });
+  test("[1] => [1]", () => {
+    const array = [1];
+    const expected = array;
+    expect(MergeSort(array)).toEqual(expected);
+  });
+  test("[] => []", () => {
+    const array: number[] = [];
+    const expected = array;
+    expect(MergeSort(array)).toEqual(expected);
   });
 });

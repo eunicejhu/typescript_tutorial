@@ -109,7 +109,7 @@ function isEqual(a: IObject, b: IObject) {
 // Array iteration
 const animals: string[] = ["dog", "cat", "owl", "turtle"];
 for (const animal of animals) {
-  console.log(animal);
+  animal.toUpperCase();
 }
 
 const dateObj = {
@@ -120,13 +120,6 @@ const dateObj = {
 };
 
 const birthday = { now: new Date("1990-05-16") };
-
-const str: string = "";
-if (str) {
-  console.log("empty string is true");
-} else {
-  console.log("empty string is false");
-}
 
 // Sorting Algorithm
 
@@ -218,4 +211,47 @@ export const chunk2 = (array: number[], size: number): number[][] => {
     }
   }
   return chunked;
+};
+
+// 3. MergeSort O(n log n) time complexity
+
+/**
+ * sort accept arguments of two sorted array
+ * @param left
+ * @param right
+ */
+export const sort = (left: number[], right: number[]): number[] => {
+  let sorted = [];
+  let il = 0,
+    rl = 0;
+  while (il < left.length && rl < right.length) {
+    if (left[il] < right[rl]) {
+      sorted.push(left[il]);
+      il++;
+    } else {
+      sorted.push(right[rl]);
+      rl++;
+    }
+  }
+  return [...sorted, ...left.slice(il), ...right.slice(rl)];
+};
+
+/**
+ *
+ * @param array
+ * return the mutated array
+ *
+ */
+export const MergeSort = (array: number[]): number[] => {
+  if (array.length < 2) {
+    return array;
+  }
+  let sorted: number[] = [];
+  const middle = Math.floor(array.length / 2);
+  const left = array.slice(0, middle);
+  const right = array.slice(middle);
+  sorted = sort(MergeSort(left), MergeSort(right));
+  // in-place sort
+  array.splice.apply(array, [0, array.length, ...sorted]);
+  return array;
 };
